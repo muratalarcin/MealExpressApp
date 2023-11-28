@@ -18,7 +18,11 @@
         android:id="@+id/detayFragment"
         android:name="com.muratalarcin.mealexpress.ui.fragment.app.DetayFragment"
         android:label="fragment_detay"
-        tools:layout="@layout/fragment_detay" />
+        tools:layout="@layout/fragment_detay" >
+        <argument
+            android:name="yemek"
+            app:argType="com.muratalarcin.mealexpress.data.entity.Yemekler" />
+    </fragment>
     <fragment
         android:id="@+id/sepetFragment"
         android:name="com.muratalarcin.mealexpress.ui.fragment.app.SepetFragment"
