@@ -13,6 +13,7 @@ public class YemeklerDaoRepository {
         ArrayList<Yemekler> liste = new ArrayList<>();
         Yemekler y1 = new Yemekler(1, "Ayran", "caney.jpg", 50, 1, 55, "murat");
         Yemekler y2 = new Yemekler(2, "sss", "sevenler.jpg", 50, 2, 5, "ss");
+
         liste.add(y1);
         liste.add(y2);
         yemeklerListesi.setValue(liste);

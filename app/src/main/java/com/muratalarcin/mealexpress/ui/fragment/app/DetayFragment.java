@@ -9,10 +9,15 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.FragmentDetayBinding;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.DetayViewModel;
+
+import java.util.ArrayList;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -31,6 +36,11 @@ public class DetayFragment extends Fragment {
         binding.twAd.setText(gelenYemek.getYemek_adi());
         binding.twAdet.setText(String.valueOf(gelenYemek.getYemek_siparis_adet()));
         binding.twFiyat.setText(String.valueOf(gelenYemek.getYemek_fiyat()));
+
+
+
+
+
 
         return binding.getRoot();
     }
