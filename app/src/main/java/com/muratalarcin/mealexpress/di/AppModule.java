@@ -1,7 +1,5 @@
 package com.muratalarcin.mealexpress.di;
 
-import android.app.Application;
-
 import com.muratalarcin.mealexpress.data.repo.YemeklerDaoRepository;
 
 import javax.inject.Singleton;
@@ -19,5 +17,4 @@ public class AppModule {
     public YemeklerDaoRepository provideYemeklerDaoRepository() {
         return new YemeklerDaoRepository();
     }
-
 }

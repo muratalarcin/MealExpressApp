@@ -6,10 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.AnasayfaRowBinding;
+import com.muratalarcin.mealexpress.ui.fragment.app.AnasayfaFragmentDirections;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.AnasayfaViewModel;
 
 import java.util.List;
@@ -48,6 +52,11 @@ public class YemeklerAdapter extends RecyclerView.Adapter<YemeklerAdapter.Anasay
 
         t.textViewAd.setText(yemek.getYemek_adi());
         t.textViewFiyat.setText(String.valueOf(yemek.getYemek_fiyat()));
+
+        t.cardViewYemek.setOnClickListener(view -> {
+            AnasayfaFragmentDirections.DetayGecis gecis = AnasayfaFragmentDirections.detayGecis(yemek);
+            Navigation.findNavController(view).navigate(gecis);
+        });
 
     }
 

@@ -11,8 +11,8 @@ public class YemeklerDaoRepository {
     public MutableLiveData<List<Yemekler>> yemeklerListesi = new MutableLiveData<>();
     public void yemekleriYukle() {
         ArrayList<Yemekler> liste = new ArrayList<>();
-        Yemekler y1 = new Yemekler(1, "Ayran", "caney.jpg", 50, 1, 50, "murat");
-        Yemekler y2 = new Yemekler(2, "sss", "sevenler.jpg", 50, 2, 50, "ss");
+        Yemekler y1 = new Yemekler(1, "Ayran", "caney.jpg", 50, 1, 55, "murat");
+        Yemekler y2 = new Yemekler(2, "sss", "sevenler.jpg", 50, 2, 5, "ss");
         liste.add(y1);
         liste.add(y2);
         yemeklerListesi.setValue(liste);

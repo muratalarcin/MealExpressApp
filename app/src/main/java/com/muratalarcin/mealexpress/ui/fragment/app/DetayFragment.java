@@ -2,13 +2,15 @@ package com.muratalarcin.mealexpress.ui.fragment.app;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.muratalarcin.mealexpress.R;
+import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.FragmentDetayBinding;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.DetayViewModel;
 
@@ -23,8 +25,19 @@ public class DetayFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDetayBinding.inflate(inflater, container, false);
 
+        DetayFragmentArgs bundle = DetayFragmentArgs.fromBundle(getArguments());
+        Yemekler gelenYemek = bundle.getYemek();
 
+        binding.twAd.setText(gelenYemek.getYemek_adi());
+        binding.twAdet.setText(String.valueOf(gelenYemek.getYemek_siparis_adet()));
+        binding.twFiyat.setText(String.valueOf(gelenYemek.getYemek_fiyat()));
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(DetayViewModel.class);
     }
 }

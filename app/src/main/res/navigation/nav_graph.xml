@@ -11,7 +11,7 @@
         android:label="fragment_anasayfa"
         tools:layout="@layout/fragment_anasayfa" >
         <action
-            android:id="@+id/action_anasayfaFragment_to_detayFragment"
+            android:id="@+id/detayGecis"
             app:destination="@id/detayFragment" />
     </fragment>
     <fragment
