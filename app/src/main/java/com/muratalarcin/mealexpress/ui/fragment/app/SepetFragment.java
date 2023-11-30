@@ -23,7 +23,9 @@ public class SepetFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSepetBinding.inflate(inflater, container, false);
 
-
+        binding.returnIcon.setOnClickListener(view -> {
+            requireActivity().onBackPressed();
+        });
 
         return binding.getRoot();
     }

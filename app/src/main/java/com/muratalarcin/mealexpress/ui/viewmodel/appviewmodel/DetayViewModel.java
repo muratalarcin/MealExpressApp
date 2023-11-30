@@ -21,6 +21,7 @@ public class DetayViewModel extends ViewModel {
     @Inject
     public DetayViewModel(YemeklerDaoRepository yrepo) {
         this.yrepo = yrepo;
+        yemekleriYukle();
     }
 
     // init metodu veya constructor içinde başlatma işlemlerini yapabilirsiniz
@@ -52,6 +53,10 @@ public class DetayViewModel extends ViewModel {
             siparisAdet.setValue(yeniAdet);
             toplamFiyat.setValue((double) (gelenYemek.getYemek_fiyat() * yeniAdet));
         }
+    }
+
+    public void yemekleriYukle() {
+        yrepo.yemekleriYukle();
     }
 
 }

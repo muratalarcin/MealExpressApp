@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,11 @@ public class DetayFragment extends Fragment {
 
         DetayFragmentArgs bundle = DetayFragmentArgs.fromBundle(getArguments());
         Yemekler gelenYemek = bundle.getYemek();
+
+        binding.returnIcon.setOnClickListener(view -> {
+            requireActivity().onBackPressed();
+        });
+
 
         String resimAdi = gelenYemek.getYemek_resim_adi();
         String url = "http://kasimadalan.pe.hu/yemekler/resimler/" + resimAdi;
