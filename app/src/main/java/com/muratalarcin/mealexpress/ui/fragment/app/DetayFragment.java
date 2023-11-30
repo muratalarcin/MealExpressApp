@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.bumptech.glide.Glide;
+import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.FragmentDetayBinding;
@@ -34,6 +35,9 @@ public class DetayFragment extends Fragment {
 
         DetayFragmentArgs bundle = DetayFragmentArgs.fromBundle(getArguments());
         Yemekler gelenYemek = bundle.getYemek();
+
+        ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
+
 
         binding.returnIcon.setOnClickListener(view -> {
             requireActivity().onBackPressed();

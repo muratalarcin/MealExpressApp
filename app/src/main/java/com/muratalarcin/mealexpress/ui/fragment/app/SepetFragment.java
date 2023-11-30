@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentSepetBinding;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.SepetViewModel;
@@ -26,6 +27,8 @@ public class SepetFragment extends Fragment {
         binding.returnIcon.setOnClickListener(view -> {
             requireActivity().onBackPressed();
         });
+
+        ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 
         return binding.getRoot();
     }

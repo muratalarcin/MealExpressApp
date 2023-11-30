@@ -5,6 +5,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.muratalarcin.mealexpress.databinding.ActivityMainBinding;
 
@@ -25,8 +26,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navHostFragment.getNavController());
 
 
-//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.nav_host_fragment);
-//        NavController navCo = navHostFragment.getNavController();
     }
+    public void setBottomNavigationVisibility(boolean visible) {
+        if (visible) {
+            binding.bottomNavigationView.setVisibility(View.VISIBLE);
+        } else {
+            binding.bottomNavigationView.setVisibility(View.GONE);
+        }
+    }
+
 }

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentAnasayfaBinding;
 import com.muratalarcin.mealexpress.ui.adapter.YemeklerAdapter;
@@ -39,6 +40,8 @@ public class AnasayfaFragment extends Fragment {
             YemeklerAdapter adapter = new YemeklerAdapter(yemeklerListesi, requireContext(), viewModel);
             binding.rwAnasayfa.setAdapter(adapter);
         } );
+
+        ((MainActivity) requireActivity()).setBottomNavigationVisibility(true);
 
         binding.rwAnasayfa.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private static final int SCROLL_THRESHOLD = 50;
