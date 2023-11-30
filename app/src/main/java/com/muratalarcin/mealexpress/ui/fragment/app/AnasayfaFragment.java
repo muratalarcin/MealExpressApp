@@ -32,7 +32,7 @@ public class AnasayfaFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentAnasayfaBinding.inflate(inflater, container, false);
 
-        binding.rwAnasayfa.setLayoutManager(//yan yana 2 tane row olma muhabbeti
+        binding.rwAnasayfa.setLayoutManager(
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         viewModel.yemeklerListesi.observe(getViewLifecycleOwner(), yemeklerListesi -> {
@@ -49,31 +49,22 @@ public class AnasayfaFragment extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                // Eğer hala bir işlem varsa, bekleyin
                 if (scrollRunnable != null) {
                     scrollHandler.removeCallbacks(scrollRunnable);
                 }
-
-                // Scroll işlemi gecikmeli bir şekilde kontrol ediliyor
                 scrollRunnable = () -> {
-                    // Aşağı kaydırılıyorsa ve arama çubuğu görünüyorsa gizle
                     if (isSearchViewVisible && scrolledDistance > SCROLL_THRESHOLD) {
                         binding.searchView.setVisibility(View.GONE);
                         isSearchViewVisible = false;
                         scrolledDistance = 0;
                     }
-                    // Yukarı çekiliyorsa ve arama çubuğu gizliyse göster
                     else if (!isSearchViewVisible && scrolledDistance < -SCROLL_THRESHOLD) {
                         binding.searchView.setVisibility(View.VISIBLE);
                         isSearchViewVisible = true;
                         scrolledDistance = 0;
                     }
                 };
-
-                // Belirli bir süre sonra işlemi gerçekleştir
                 scrollHandler.postDelayed(scrollRunnable, 50);
-
-                // scrolledDistance'ı güncelle
                 if ((isSearchViewVisible && dy > 0) || (!isSearchViewVisible && dy < 0)) {
                     scrolledDistance += dy;
                 }

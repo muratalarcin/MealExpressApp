@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.bumptech.glide.Glide;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.FragmentDetayBinding;
@@ -33,14 +34,32 @@ public class DetayFragment extends Fragment {
         DetayFragmentArgs bundle = DetayFragmentArgs.fromBundle(getArguments());
         Yemekler gelenYemek = bundle.getYemek();
 
+        String resimAdi = gelenYemek.getYemek_resim_adi();
+        String url = "http://kasimadalan.pe.hu/yemekler/resimler/" + resimAdi;
+        Glide.with(this).load(url).override(300, 300).into(binding.imageViewDetay);
+
         binding.twAd.setText(gelenYemek.getYemek_adi());
         binding.twAdet.setText(String.valueOf(gelenYemek.getYemek_siparis_adet()));
-        binding.twFiyat.setText(String.valueOf(gelenYemek.getYemek_fiyat()));
+        binding.twFiyat.setText(String.valueOf("₺" + gelenYemek.getYemek_fiyat()));
 
+        binding.plusFab.setOnClickListener(view -> {
+            viewModel.artirAdet();
+        });
 
+        binding.minusFab.setOnClickListener(view -> {
+            viewModel.azaltAdet();
+        });
 
+        // LiveData'ı dinleyerek güncellemeleri alın
+        viewModel.getSiparisAdet().observe(getViewLifecycleOwner(), siparisAdet -> {
+            binding.twAdet.setText(String.valueOf(siparisAdet));
+        });
 
+        viewModel.getToplamFiyat().observe(getViewLifecycleOwner(), toplamFiyat -> {
+            binding.twToplam.setText(" ₺ " + toplamFiyat);
+        });
 
+        viewModel.init(gelenYemek);
 
         return binding.getRoot();
     }
@@ -49,5 +68,6 @@ public class DetayFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(DetayViewModel.class);
+
     }
 }
