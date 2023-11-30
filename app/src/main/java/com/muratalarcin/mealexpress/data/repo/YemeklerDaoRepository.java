@@ -3,23 +3,35 @@ package com.muratalarcin.mealexpress.data.repo;
 import androidx.lifecycle.MutableLiveData;
 
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
+import com.muratalarcin.mealexpress.data.entity.YemeklerCevap;
+import com.muratalarcin.mealexpress.retrofit.YemeklerDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class YemeklerDaoRepository {
     public MutableLiveData<List<Yemekler>> yemeklerListesi = new MutableLiveData<>();
-    public void yemekleriYukle() {
-        ArrayList<Yemekler> liste = new ArrayList<>();
-        Yemekler y1 = new Yemekler(1, "Ayran", "caney.jpg", 50, 1, 55, "murat");
-        Yemekler y2 = new Yemekler(2, "sss", "sevenler.jpg", 50, 2, 5, "ss");
-        Yemekler y3 = new Yemekler(2, "sss", "sevenler.jpg", 50, 2, 5, "ss");
-        Yemekler y4 = new Yemekler(2, "sss", "sevenler.jpg", 50, 2, 5, "ss");
+    private YemeklerDao ydao;
 
-        liste.add(y1);
-        liste.add(y2);
-        liste.add(y3);
-        liste.add(y4);
-        yemeklerListesi.setValue(liste);
+    public YemeklerDaoRepository(YemeklerDao ydao) {
+        this.ydao = ydao;
+    }
+    public void yemekleriYukle() {
+        ydao.yemekleriYukle().enqueue(new Callback<YemeklerCevap>() {
+            @Override
+            public void onResponse(Call<YemeklerCevap> call, Response<YemeklerCevap> response) {
+                List<Yemekler> liste = response.body().getYemekler();
+                yemeklerListesi.setValue(liste);
+            }
+
+            @Override
+            public void onFailure(Call<YemeklerCevap> call, Throwable t) {
+
+            }
+        });
     }
 }

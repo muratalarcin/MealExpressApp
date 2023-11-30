@@ -1,6 +1,8 @@
 package com.muratalarcin.mealexpress.di;
 
 import com.muratalarcin.mealexpress.data.repo.YemeklerDaoRepository;
+import com.muratalarcin.mealexpress.retrofit.ApiUtils;
+import com.muratalarcin.mealexpress.retrofit.YemeklerDao;
 
 import javax.inject.Singleton;
 
@@ -14,7 +16,14 @@ import dagger.hilt.components.SingletonComponent;
 public class AppModule {
     @Provides
     @Singleton
-    public YemeklerDaoRepository provideYemeklerDaoRepository() {
-        return new YemeklerDaoRepository();
+    public YemeklerDaoRepository provideYemeklerDaoRepository(YemeklerDao ydao) {
+        return new YemeklerDaoRepository(ydao);
     }
+
+    @Provides
+    @Singleton
+    public YemeklerDao provideYemeklerDao() {
+        return ApiUtils.getYemeklerDao();
+    }
+
 }
