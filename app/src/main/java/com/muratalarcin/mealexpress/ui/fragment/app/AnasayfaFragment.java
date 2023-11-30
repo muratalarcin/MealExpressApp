@@ -90,12 +90,11 @@ public class AnasayfaFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(AnasayfaViewModel.class);
-        // AnasayfaFragment'ta onCreateView içinde
     }
 
-    @Override
+    /*@Override
     public void onResume() {
         super.onResume();
         viewModel.yemekleriYukle();
-    }
+    }*/
 }

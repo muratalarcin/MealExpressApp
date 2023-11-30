@@ -10,6 +10,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.AnasayfaRowBinding;
@@ -50,8 +51,12 @@ public class YemeklerAdapter extends RecyclerView.Adapter<YemeklerAdapter.Anasay
         Yemekler yemek = yemeklerListesi.get(position);
         AnasayfaRowBinding t = holder.tasarim;
 
+        String resimAdi = yemek.getYemek_resim_adi();
+        String url = "http://kasimadalan.pe.hu/yemekler/resimler/" + resimAdi;
+        Glide.with(mContext).load(url).override(300, 300).into(t.imageViewYemek);
+
         t.textViewAd.setText(yemek.getYemek_adi());
-        t.textViewFiyat.setText(String.valueOf(yemek.getYemek_fiyat()));
+        t.textViewFiyat.setText(String.valueOf(yemek.getYemek_fiyat() + "₺"));
 
         t.cardViewYemek.setOnClickListener(view -> {
             AnasayfaFragmentDirections.DetayGecis gecis = AnasayfaFragmentDirections.detayGecis(yemek);
