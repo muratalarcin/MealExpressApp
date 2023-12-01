@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentSepetBinding;
+import com.muratalarcin.mealexpress.ui.fragment.BottomSheetFragment;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.SepetViewModel;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -33,6 +34,10 @@ public class SepetFragment extends Fragment {
         binding.returnIcon.setOnClickListener(view -> {
             requireActivity().onBackPressed();
         });
+
+        BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
+        bottomSheetFragment.show(getParentFragmentManager(), bottomSheetFragment.getTag());
+
 
         ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 

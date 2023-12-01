@@ -22,4 +22,14 @@ public class BottomSheetFragment extends com.google.android.material.bottomsheet
 
         return binding.getRoot();
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Bottom sheet'i fragment açıldığında otomatik olarak açık göstermek için
+        if (getDialog() != null) {
+            getDialog().getWindow().setDimAmount(0.0f); // Arka planı tamamen saydam yap
+            getDialog().getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+    }
+
 }
