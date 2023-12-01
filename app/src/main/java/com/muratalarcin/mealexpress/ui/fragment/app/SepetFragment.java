@@ -3,8 +3,11 @@ package com.muratalarcin.mealexpress.ui.fragment.app;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentSepetBinding;
+import com.muratalarcin.mealexpress.ui.adapter.SepetAdapter;
 import com.muratalarcin.mealexpress.ui.fragment.BottomSheetFragment;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.SepetViewModel;
 
@@ -42,9 +46,16 @@ public class SepetFragment extends Fragment {
 
         ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 
+        binding.rvSepet.setLayoutManager(new LinearLayoutManager(requireContext()));
+        viewModel.sepetListesi.observe(getViewLifecycleOwner(), sepetListesi -> {
+            SepetAdapter adapter = new SepetAdapter(sepetListesi,requireContext(),viewModel);
+            binding.rvSepet.setAdapter(adapter);
+        });
+
+
+
         AtomicReference<Float> startY = new AtomicReference<>((float) 0);
         float MIN_SWIPE_DISTANCE = 100;
-
         binding.imageButton.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -69,9 +80,12 @@ public class SepetFragment extends Fragment {
         });
 
 
-
-
-
         return binding.getRoot();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(SepetViewModel.class);
     }
 }

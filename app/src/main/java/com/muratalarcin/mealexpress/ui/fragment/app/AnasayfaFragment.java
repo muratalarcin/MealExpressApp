@@ -75,8 +75,6 @@ public class AnasayfaFragment extends Fragment {
         });
 
 
-
-
         return binding.getRoot();
     }
 

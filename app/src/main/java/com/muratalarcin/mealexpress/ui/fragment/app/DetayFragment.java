@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import com.bumptech.glide.Glide;
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
+import com.muratalarcin.mealexpress.data.entity.Sepet;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.FragmentDetayBinding;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.DetayViewModel;
@@ -28,6 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DetayFragment extends Fragment {
     private FragmentDetayBinding binding;
     private DetayViewModel viewModel;
+    private Sepet Sepet;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class DetayFragment extends Fragment {
 
         binding.twAd.setText(gelenYemek.getYemek_adi());
         binding.twAdet.setText(String.valueOf(gelenYemek.getYemek_siparis_adet()));
-        binding.twFiyat.setText(String.valueOf("₺" + gelenYemek.getYemek_fiyat()));
+        binding.twFiyat.setText(String.valueOf(gelenYemek.getYemek_fiyat()));
 
         binding.plusFab.setOnClickListener(view -> {
             viewModel.artirAdet();
@@ -66,10 +68,22 @@ public class DetayFragment extends Fragment {
         });
 
         viewModel.getToplamFiyat().observe(getViewLifecycleOwner(), toplamFiyat -> {
-            binding.twToplam.setText(" ₺ " + toplamFiyat);
+            binding.twToplam.setText(String.valueOf(toplamFiyat));
         });
 
         viewModel.init(gelenYemek);
+
+        //Yemekler yemek = yemeklerListesi.get(position);
+        binding.buttonSepeteEkle.setOnClickListener(view -> {
+            String yemek_adi = binding.twAd.getText().toString();
+           // String yemek_resim_adi = Sepet.getYemek_resim_adi();
+            int yemek_fiyat = Integer.parseInt(String.valueOf(binding.twFiyat.getText()));
+            int yemek_siparis_adet = Integer.parseInt(String.valueOf(binding.twAdet.getText()));
+            String kullanici_adi = "murat";
+
+            viewModel.sepeteEkle(yemek_adi, "Ayran.png", yemek_fiyat, yemek_siparis_adet, "murat");
+
+        });
 
         return binding.getRoot();
     }
