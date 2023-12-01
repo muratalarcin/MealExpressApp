@@ -76,12 +76,12 @@ public class DetayFragment extends Fragment {
         //Yemekler yemek = yemeklerListesi.get(position);
         binding.buttonSepeteEkle.setOnClickListener(view -> {
             String yemek_adi = binding.twAd.getText().toString();
-           // String yemek_resim_adi = Sepet.getYemek_resim_adi();
+            String yemek_resim_adi = resimAdi;
             int yemek_fiyat = Integer.parseInt(String.valueOf(binding.twFiyat.getText()));
             int yemek_siparis_adet = Integer.parseInt(String.valueOf(binding.twAdet.getText()));
             String kullanici_adi = "murat";
 
-            viewModel.sepeteEkle(yemek_adi, "Ayran.png", yemek_fiyat, yemek_siparis_adet, "murat");
+            viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
 
         });
 
