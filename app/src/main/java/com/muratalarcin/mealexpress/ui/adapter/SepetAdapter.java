@@ -1,6 +1,7 @@
 package com.muratalarcin.mealexpress.ui.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,12 +17,12 @@ import java.util.List;
 
 public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHolder> {
     private List<Sepet> sepetListesi;
-    private Context context;
+    private Context mContext;
     private SepetViewModel viewModel;
 
-    public SepetAdapter(List<Sepet> sepetListesi, Context context, SepetViewModel viewModel) {
+    public SepetAdapter(List<Sepet> sepetListesi, Context mContext, SepetViewModel viewModel) {
         this.sepetListesi = sepetListesi;
-        this.context = context;
+        this.mContext = mContext;
         this.viewModel = viewModel;
     }
 
@@ -37,11 +38,17 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHold
     @NonNull
     @Override
     public SepetRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        SepetRowBinding binding =
+                SepetRowBinding.inflate(LayoutInflater.from(mContext), parent, false);
+        return new SepetRowHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SepetRowHolder holder, int position) {
+        Sepet sepet = sepetListesi.get(position);
+        SepetRowBinding t = holder.tasarim;
+
+
 
     }
 
