@@ -29,4 +29,8 @@ public interface YemeklerDao {
     @POST("yemekler/sepettekiYemekleriGetir.php")
     @FormUrlEncoded
     Call<SepetCevap> sepetiYukle(@Field("kullanici_adi") String kullanici_adi);
+
+    @POST("yemekler/sepettenYemekSil.php")
+    @FormUrlEncoded
+    Call<CRUDCevap> sepettenSil(@Field("sepet_yemek_id") String sepet_yemek_id, @Field("kullanici_adi") String kullanici_adi);
 }

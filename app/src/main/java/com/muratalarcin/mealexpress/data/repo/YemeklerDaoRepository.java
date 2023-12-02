@@ -66,4 +66,18 @@ public class YemeklerDaoRepository {
             }
         });
     }
+
+    public void sepettenSil(String sepet_yemek_id, String kullanici_adi) {
+        ydao.sepettenSil(sepet_yemek_id, kullanici_adi).enqueue(new Callback<CRUDCevap>() {
+            @Override
+            public void onResponse(Call<CRUDCevap> call, Response<CRUDCevap> response) {
+                sepetiYukle(kullanici_adi);
+            }
+
+            @Override
+            public void onFailure(Call<CRUDCevap> call, Throwable t) {
+
+            }
+        });
+    }
 }

@@ -28,6 +28,9 @@ public class SepetViewModel extends ViewModel {
 
     }
 
+    public void sepettenSil(String sepet_yemek_id, String kullanici_adi) {
+        yrepo.sepettenSil(sepet_yemek_id, kullanici_adi);
 
+    }
 
 }
