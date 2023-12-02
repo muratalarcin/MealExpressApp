@@ -1,6 +1,7 @@
 package com.muratalarcin.mealexpress.retrofit;
 
 import com.muratalarcin.mealexpress.data.entity.CRUDCevap;
+import com.muratalarcin.mealexpress.data.entity.SepetCevap;
 import com.muratalarcin.mealexpress.data.entity.YemeklerCevap;
 
 import retrofit2.Call;
@@ -24,4 +25,8 @@ public interface YemeklerDao {
                                @Field("yemek_fiyat") int yemek_fiyat,
                                @Field("yemek_siparis_adet") int yemek_siparis_adet,
                                @Field("kullanici_adi") String kullanici_adi);
+
+    @POST("yemekler/sepettekiYemekleriGetir.php")
+    @FormUrlEncoded
+    Call<SepetCevap> sepetiYukle(@Field("kullanici_adi") String kullanici_adi);
 }

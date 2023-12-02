@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
+import com.muratalarcin.mealexpress.data.entity.Sepet;
+import com.muratalarcin.mealexpress.data.entity.SepetString;
 import com.muratalarcin.mealexpress.databinding.FragmentSepetBinding;
 import com.muratalarcin.mealexpress.ui.adapter.SepetAdapter;
 import com.muratalarcin.mealexpress.ui.fragment.BottomSheetFragment;
@@ -29,6 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class SepetFragment extends Fragment {
     private FragmentSepetBinding binding;
     private SepetViewModel viewModel;
+    private SepetString sepet;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,10 +50,13 @@ public class SepetFragment extends Fragment {
         ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 
         binding.rvSepet.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         viewModel.sepetListesi.observe(getViewLifecycleOwner(), sepetListesi -> {
             SepetAdapter adapter = new SepetAdapter(sepetListesi,requireContext(),viewModel);
             binding.rvSepet.setAdapter(adapter);
         });
+
+        viewModel.sepetiYukle("murat");
 
 
 

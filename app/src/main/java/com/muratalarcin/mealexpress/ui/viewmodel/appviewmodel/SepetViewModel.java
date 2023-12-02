@@ -3,7 +3,7 @@ package com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.muratalarcin.mealexpress.data.entity.Sepet;
+import com.muratalarcin.mealexpress.data.entity.SepetString;
 import com.muratalarcin.mealexpress.data.repo.YemeklerDaoRepository;
 
 import java.util.List;
@@ -15,12 +15,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class SepetViewModel extends ViewModel {
     public YemeklerDaoRepository yrepo;
-    public MutableLiveData<List<Sepet>> sepetListesi = new MutableLiveData<>();
+    public MutableLiveData<List<SepetString>> sepetListesi = new MutableLiveData<List<com.muratalarcin.mealexpress.data.entity.SepetString>>();
 
     @Inject
     public SepetViewModel(YemeklerDaoRepository yrepo) {
         this.yrepo = yrepo;
         sepetListesi = yrepo.sepetListesi;
+    }
+
+    public void sepetiYukle(String kullanici_adi) {
+        yrepo.sepetiYukle(kullanici_adi);
+
     }
 
 

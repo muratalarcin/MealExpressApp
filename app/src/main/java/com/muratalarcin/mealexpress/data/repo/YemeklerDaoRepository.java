@@ -3,12 +3,12 @@ package com.muratalarcin.mealexpress.data.repo;
 import androidx.lifecycle.MutableLiveData;
 
 import com.muratalarcin.mealexpress.data.entity.CRUDCevap;
-import com.muratalarcin.mealexpress.data.entity.Sepet;
+import com.muratalarcin.mealexpress.data.entity.SepetCevap;
+import com.muratalarcin.mealexpress.data.entity.SepetString;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.data.entity.YemeklerCevap;
 import com.muratalarcin.mealexpress.retrofit.YemeklerDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class YemeklerDaoRepository {
     public MutableLiveData<List<Yemekler>> yemeklerListesi = new MutableLiveData<>();
-    public MutableLiveData<List<Sepet>> sepetListesi = new MutableLiveData<>();
+    public MutableLiveData<List<SepetString>> sepetListesi = new MutableLiveData<List<SepetString>>();
     private YemeklerDao ydao;
 
     public YemeklerDaoRepository(YemeklerDao ydao) {
@@ -47,6 +47,21 @@ public class YemeklerDaoRepository {
 
             @Override
             public void onFailure(Call<CRUDCevap> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void sepetiYukle(String kullanici_adi) {
+        ydao.sepetiYukle(kullanici_adi).enqueue(new Callback<SepetCevap>() {
+            @Override
+            public void onResponse(Call<SepetCevap> call, Response<SepetCevap> response) {
+                List<SepetString> liste = response.body().getSepetListesi();
+                sepetListesi.setValue(liste);
+            }
+
+            @Override
+            public void onFailure(Call<SepetCevap> call, Throwable t) {
 
             }
         });

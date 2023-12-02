@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView6" />
 
             <ImageView
-                android:id="@+id/ivSepetRow"
+                android:id="@+id/imageViewSepet"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="8dp"
@@ -48,7 +48,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
-                app:layout_constraintStart_toEndOf="@+id/ivSepetRow"
+                app:layout_constraintStart_toEndOf="@+id/imageViewSepet"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_marginStart="24dp"
                 android:text="Birim Fiyat :"
                 app:layout_constraintBottom_toTopOf="@+id/textView6"
-                app:layout_constraintStart_toEndOf="@+id/ivSepetRow"
+                app:layout_constraintStart_toEndOf="@+id/imageViewSepet"
                 app:layout_constraintTop_toBottomOf="@+id/tvSepetYemekAd" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_marginStart="24dp"
                 android:text="Adet :"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ivSepetRow"
+                app:layout_constraintStart_toEndOf="@+id/imageViewSepet"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <ImageView
