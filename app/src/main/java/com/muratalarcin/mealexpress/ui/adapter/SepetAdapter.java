@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
+import com.muratalarcin.mealexpress.data.entity.Sepet;
 import com.muratalarcin.mealexpress.data.entity.SepetString;
 import com.muratalarcin.mealexpress.data.entity.YemekAdetBilgisi;
 import com.muratalarcin.mealexpress.databinding.SepetRowBinding;
@@ -24,7 +26,7 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHold
     private List<SepetString> sepetListesi;
     private Context mContext;
     private SepetViewModel viewModel;
-    Map<String, Integer> toplamSiparisAdetleri = new HashMap<>();
+    Map<String, String > toplamSiparisAdetleri = new HashMap<>();
     List<YemekAdetBilgisi> yemekAdetBilgisiList = new ArrayList<>();
 
     public SepetAdapter(List<SepetString> sepetListesi, Context mContext, SepetViewModel viewModel) {
@@ -39,19 +41,23 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHold
             int siparisAdet = Integer.parseInt(sepet.getYemek_siparis_adet());
 
             if (toplamSiparisAdetleri.containsKey(yemekAdi)) {
-                int mevcutAdet = toplamSiparisAdetleri.get(yemekAdi);
-                toplamSiparisAdetleri.put(yemekAdi, mevcutAdet + siparisAdet);
+                int mevcutAdet = Integer.parseInt(toplamSiparisAdetleri.get(yemekAdi));
+                String toplamAdet = String.valueOf(mevcutAdet + siparisAdet);
+                toplamSiparisAdetleri.put(yemekAdi, toplamAdet);
             } else {
-                toplamSiparisAdetleri.put(yemekAdi, siparisAdet);
+                toplamSiparisAdetleri.put(yemekAdi, String.valueOf(siparisAdet));
             }
         }
 
-        // Yemek adet bilgilerini oluştur
         yemekAdetBilgisiList.clear();
-        for (Map.Entry<String, Integer> entry : toplamSiparisAdetleri.entrySet()) {
+        for (Map.Entry<String, String> entry : toplamSiparisAdetleri.entrySet()) {
             String yemekAdi = entry.getKey();
-            int toplamAdet = entry.getValue();
-            YemekAdetBilgisi yemekAdetBilgisi = new YemekAdetBilgisi(yemekAdi, toplamAdet, yemekAdi);
+            String toplamAdet = entry.getValue();
+            String yemekFiyat = sepetListesi.stream().filter(sepet -> sepet.getYemek_adi().equals(yemekAdi)).findFirst().get().getYemek_fiyat();
+            String yemekResimAdi = sepetListesi.stream().filter(sepet -> sepet.getYemek_adi().equals(yemekAdi)).findFirst().get().getYemek_resim_adi();
+            String yemek_id = sepetListesi.stream().filter(sepet -> sepet.getYemek_adi().equals(yemekAdi)).findFirst().get().getSepet_yemek_id();
+            String kullaniciAdi = sepetListesi.stream().filter(sepet -> sepet.getYemek_adi().equals(yemekAdi)).findFirst().get().getKullanici_adi();
+            YemekAdetBilgisi yemekAdetBilgisi = new YemekAdetBilgisi(yemekAdi, toplamAdet, yemekFiyat, yemekResimAdi, yemek_id, kullaniciAdi);
             yemekAdetBilgisiList.add(yemekAdetBilgisi);
         }
     }
@@ -83,7 +89,15 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHold
 
         t.tvSepetYemekAd.setText(yemekAdetBilgisi.getYemekAdi());
         t.tvSepetYemekAdet.setText(String.valueOf(yemekAdetBilgisi.getToplamAdet()));
-        t.tvSepetYemekFiyat.setText(sepetListesi.get(position).getYemek_fiyat());
+        t.tvSepetYemekFiyat.setText(yemekAdetBilgisi.getYemekFiyat());
+
+        t.imageViewSil.setOnClickListener(view -> {
+            Snackbar.make(view, "Ürünü silmek ister misiniz?", Snackbar.LENGTH_SHORT)
+                    .setAction("Evet", view1 -> {
+                        viewModel.sepettenSil(yemekAdetBilgisi.getSepet_yemek_id(), yemekAdetBilgisi.getKullanici_adi());
+                    })
+                    .show();
+        });
     }
 
     @Override
