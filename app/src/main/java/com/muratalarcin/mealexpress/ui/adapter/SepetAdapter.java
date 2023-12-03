@@ -1,14 +1,17 @@
 package com.muratalarcin.mealexpress.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
+import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Sepet;
 import com.muratalarcin.mealexpress.data.entity.SepetString;
 import com.muratalarcin.mealexpress.data.entity.YemekAdetBilgisi;
@@ -92,7 +95,15 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHold
         t.tvSepetYemekFiyat.setText(yemekAdetBilgisi.getYemekFiyat());
 
         t.imageViewSil.setOnClickListener(view -> {
+            int backgrounColor = ContextCompat.getColor(mContext, R.color.md_theme_dark_error);
+            int textColor = ContextCompat.getColor(mContext, R.color.md_theme_light_onSecondaryContainer);
+            int actionTextColor = ContextCompat.getColor(mContext, R.color.md_theme_light_error);
+
+
             Snackbar.make(view, "Ürünü silmek ister misiniz?", Snackbar.LENGTH_SHORT)
+                    .setBackgroundTint(backgrounColor)
+                    .setTextColor(textColor)
+                    .setActionTextColor(actionTextColor)
                     .setAction("Evet", view1 -> {
                         viewModel.sepettenSil(yemekAdetBilgisi.getSepet_yemek_id(), yemekAdetBilgisi.getKullanici_adi());
                     })
