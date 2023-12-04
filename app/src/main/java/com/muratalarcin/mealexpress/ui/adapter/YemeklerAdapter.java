@@ -16,6 +16,7 @@ import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.AnasayfaRowBinding;
 import com.muratalarcin.mealexpress.ui.fragment.app.AnasayfaFragmentDirections;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.AnasayfaViewModel;
+import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.DetayViewModel;
 
 import java.util.List;
 
@@ -57,6 +58,17 @@ public class YemeklerAdapter extends RecyclerView.Adapter<YemeklerAdapter.Anasay
 
         t.textViewAd.setText(yemek.getYemek_adi());
         t.textViewFiyat.setText(String.valueOf(yemek.getYemek_fiyat() + "₺"));
+
+        t.buttonSepet.setOnClickListener(view -> {
+                String yemek_adi = yemek.getYemek_adi();
+                String yemek_resim_adi = resimAdi;
+                int yemek_fiyat = yemek.getYemek_fiyat();
+                int yemek_siparis_adet = 1;
+                String kullanici_adi = "murat";
+
+                viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
+
+        });
 
         t.cardViewYemek.setOnClickListener(view -> {
             AnasayfaFragmentDirections.DetayGecis gecis = AnasayfaFragmentDirections.detayGecis(yemek);

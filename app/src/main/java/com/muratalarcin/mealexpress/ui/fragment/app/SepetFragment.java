@@ -44,7 +44,7 @@ public class SepetFragment extends Fragment {
 
         BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
         //bottomSheetFragment.setCancelable(false); // Kapatılamaz yap
-        bottomSheetFragment.show(getParentFragmentManager(), bottomSheetFragment.getTag());
+        //bottomSheetFragment.show(getParentFragmentManager(), bottomSheetFragment.getTag());
 
 
         ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);

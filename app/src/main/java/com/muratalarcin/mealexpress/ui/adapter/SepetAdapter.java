@@ -1,6 +1,9 @@
 package com.muratalarcin.mealexpress.ui.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -92,7 +95,10 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHold
 
         t.tvSepetYemekAd.setText(yemekAdetBilgisi.getYemekAdi());
         t.tvSepetYemekAdet.setText(String.valueOf(yemekAdetBilgisi.getToplamAdet()));
-        t.tvSepetYemekFiyat.setText(yemekAdetBilgisi.getYemekFiyat());
+        t.tvSepetYemekFiyat.setText(String.valueOf("₺" + yemekAdetBilgisi.getYemekFiyat()));
+        t.textViewItemToplamFiyat.setText(String.valueOf("₺" + Integer.parseInt(yemekAdetBilgisi.getYemekFiyat()) * Integer.parseInt(yemekAdetBilgisi.getToplamAdet())));
+
+        hesaplaGenelToplam(yemekAdetBilgisiList);
 
         t.imageViewSil.setOnClickListener(view -> {
             int backgrounColor = ContextCompat.getColor(mContext, R.color.md_theme_dark_error);
@@ -109,6 +115,22 @@ public class SepetAdapter extends RecyclerView.Adapter<SepetAdapter.SepetRowHold
                     })
                     .show();
         });
+    }
+    // Genel toplamı hesaplayan metod
+    private int hesaplaGenelToplam(List<YemekAdetBilgisi> yemekAdetBilgisiList) {
+        int genelToplam = 0;
+
+        for (YemekAdetBilgisi yemekAdetBilgisi : yemekAdetBilgisiList) {
+            int adet = Integer.parseInt(yemekAdetBilgisi.getToplamAdet());
+            int fiyat = Integer.parseInt(yemekAdetBilgisi.getYemekFiyat());
+            genelToplam += (adet * fiyat);
+
+            SharedPreferences sharedpref = mContext.getSharedPreferences("Bilgi", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedpref.edit();
+            editor.putString("1", String.valueOf(genelToplam));
+            editor.apply();
+        }
+        return genelToplam;
     }
 
     @Override

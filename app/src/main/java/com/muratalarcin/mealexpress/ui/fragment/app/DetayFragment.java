@@ -83,6 +83,8 @@ public class DetayFragment extends Fragment {
 
             viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
 
+            requireActivity().onBackPressed();
+
         });
 
         return binding.getRoot();
