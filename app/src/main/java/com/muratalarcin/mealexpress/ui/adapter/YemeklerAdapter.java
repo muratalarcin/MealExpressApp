@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavDirections;
@@ -67,6 +68,8 @@ public class YemeklerAdapter extends RecyclerView.Adapter<YemeklerAdapter.Anasay
                 String kullanici_adi = "murat";
 
                 viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
+
+            Toast.makeText(mContext, "Sepete eklendi..", Toast.LENGTH_SHORT).show();
 
         });
 

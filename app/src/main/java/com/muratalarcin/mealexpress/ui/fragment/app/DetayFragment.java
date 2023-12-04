@@ -1,8 +1,10 @@
 package com.muratalarcin.mealexpress.ui.fragment.app;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -12,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Sepet;
@@ -75,15 +79,28 @@ public class DetayFragment extends Fragment {
 
         //Yemekler yemek = yemeklerListesi.get(position);
         binding.buttonSepeteEkle.setOnClickListener(view -> {
-            String yemek_adi = binding.twAd.getText().toString();
-            String yemek_resim_adi = resimAdi;
-            int yemek_fiyat = Integer.parseInt(String.valueOf(binding.twFiyat.getText()));
-            int yemek_siparis_adet = Integer.parseInt(String.valueOf(binding.twAdet.getText()));
-            String kullanici_adi = "murat";
+            int backgrounColor = ContextCompat.getColor(getContext(), R.color.md_theme_dark_error);
+            int textColor = ContextCompat.getColor(getContext(), R.color.md_theme_light_onSecondaryContainer);
+            int actionTextColor = ContextCompat.getColor(getContext(), R.color.md_theme_light_error);
 
-            viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
+            if(Integer.parseInt((String) binding.twAdet.getText()) == 0) {
+                Snackbar.make(view, "Lütfen ürün miktarı seçiniz.", Snackbar.LENGTH_SHORT)
+                        .setBackgroundTint(backgrounColor)
+                        .setTextColor(textColor)
+                        .setActionTextColor(actionTextColor)
+                        .show();
+            } else {
+                String yemek_adi = binding.twAd.getText().toString();
+                String yemek_resim_adi = resimAdi;
+                int yemek_fiyat = Integer.parseInt(String.valueOf(binding.twFiyat.getText()));
+                int yemek_siparis_adet = Integer.parseInt(String.valueOf(binding.twAdet.getText()));
+                String kullanici_adi = "murat";
 
-            requireActivity().onBackPressed();
+                viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
+
+                requireActivity().onBackPressed();
+                Toast.makeText(getContext(), "Sepete eklendi..", Toast.LENGTH_SHORT).show();
+            }
 
         });
 

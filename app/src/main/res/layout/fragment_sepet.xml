@@ -22,7 +22,7 @@
             android:textStyle="bold"
             android:text="Sepetim"
             android:layout_gravity="center"
-            android:textSize="28dp"/>
+            android:textSize="26dp"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/returnIcon"
