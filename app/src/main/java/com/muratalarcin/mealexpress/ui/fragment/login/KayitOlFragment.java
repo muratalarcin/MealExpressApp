@@ -3,6 +3,7 @@ package com.muratalarcin.mealexpress.ui.fragment.login;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,13 @@ public class KayitOlFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentKayitOlBinding.inflate(inflater, container, false);
 
-        //binding.toggleGroup.check(R.id.buttonUyeOl);
+        binding.toggleGroup.check(R.id.buttonKayitOl);
 
         ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
+
+        binding.buttonGirisYap.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.kayittanGirise);
+        });
 
         return binding.getRoot();
     }

@@ -45,6 +45,9 @@
         <action
             android:id="@+id/giristen_kayita"
             app:destination="@id/kayitOlFragment" />
+        <action
+            android:id="@+id/giristenAnasayfaya"
+            app:destination="@id/anasayfaFragment" />
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"

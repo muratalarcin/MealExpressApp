@@ -34,6 +34,12 @@ public class GirisYapFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.giristen_kayita);
         });
 
+        binding.buttonUygulamayaGirisYap.setOnClickListener(view -> {
+            if (binding.textInputLayoutSifre.getEditText().toString().equals("admin")) {
+                Navigation.findNavController(view).navigate(R.id.giristenAnasayfaya);
+            }
+        });
+
 
         return binding.getRoot();
     }
