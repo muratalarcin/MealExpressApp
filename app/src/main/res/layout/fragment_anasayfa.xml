@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.app.AnasayfaFragment">
 
+    <ImageView
+        android:id="@+id/sepetImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/sepet_icon"
+        app:layout_constraintBottom_toTopOf="@+id/rwAnasayfa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
         style="@style/Widget.MaterialComponents.Toolbar"
@@ -36,7 +48,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/bn_style"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sepetImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 

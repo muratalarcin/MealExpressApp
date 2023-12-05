@@ -20,6 +20,7 @@ public class SepetViewModel extends ViewModel {
     @Inject
     public SepetViewModel(YemeklerDaoRepository yrepo) {
         this.yrepo = yrepo;
+        sepetiYukle("murat");
         sepetListesi = yrepo.sepetListesi;
     }
 
@@ -31,6 +32,10 @@ public class SepetViewModel extends ViewModel {
     public void sepettenSil(String sepet_yemek_id, String kullanici_adi) {
         yrepo.sepettenSil(sepet_yemek_id, kullanici_adi);
 
+    }
+
+    public void yemekleriYukle() {
+        yrepo.yemekleriYukle();
     }
 
 }

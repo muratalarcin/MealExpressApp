@@ -3,6 +3,7 @@ package com.muratalarcin.mealexpress.ui.fragment.login;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentGirisYapBinding;
 import com.muratalarcin.mealexpress.ui.viewmodel.loginviewmodel.GirisYapViewModel;
+
+import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -35,10 +38,14 @@ public class GirisYapFragment extends Fragment {
         });
 
         binding.buttonUygulamayaGirisYap.setOnClickListener(view -> {
-            if (binding.textInputLayoutSifre.getEditText().toString().equals("admin")) {
+            String girilenSifre = binding.textInputLayoutSifre.getEditText().getText().toString();
+
+            if (girilenSifre.equals("admin")) {
                 Navigation.findNavController(view).navigate(R.id.giristenAnasayfaya);
+
             }
         });
+
 
 
         return binding.getRoot();

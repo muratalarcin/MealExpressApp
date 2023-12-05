@@ -2,12 +2,15 @@ package com.muratalarcin.mealexpress.ui.fragment.app;
 
 import static android.view.View.GONE;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -32,6 +35,10 @@ public class AnasayfaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAnasayfaBinding.inflate(inflater, container, false);
+
+        binding.sepetImageView.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.anasayfadanSepete);
+        });
 
         binding.rwAnasayfa.setLayoutManager(
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));

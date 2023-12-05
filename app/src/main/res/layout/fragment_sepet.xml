@@ -24,12 +24,15 @@
             android:layout_gravity="center"
             android:textSize="26dp"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/returnIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:rotation="180"
-            android:src="@drawable/baseline_arrow_forward_24" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:src="@drawable/baseline_arrow_forward_24"
+            android:rotation="180"/>
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,9 +47,10 @@
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imageButton"
-        android:layout_width="match_parent"
-        android:background="@drawable/bottom_sheet_bg"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+
+        android:background="@drawable/bottom_sheet_bg"
         android:backgroundTint="@color/md_theme_light_surfaceVariant"
         android:paddingStart="170dp"
         android:paddingEnd="170dp"

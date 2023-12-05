@@ -3,9 +3,11 @@ package com.muratalarcin.mealexpress.ui.fragment.app;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -40,6 +42,7 @@ public class SepetFragment extends Fragment {
 
         binding.returnIcon.setOnClickListener(view -> {
             requireActivity().onBackPressed();
+            //Navigation.findNavController(view).navigate(R.id.sepettenAnasayfaya);
         });
 
         BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
@@ -56,7 +59,7 @@ public class SepetFragment extends Fragment {
             binding.rvSepet.setAdapter(adapter);
         });
 
-        viewModel.sepetiYukle("murat");
+        //viewModel.sepetiYukle("murat");
 
 
 
