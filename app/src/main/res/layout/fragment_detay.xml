@@ -31,6 +31,14 @@
             android:rotation="180"
             android:src="@drawable/baseline_arrow_forward_24" />
 
+        <ImageView
+            android:id="@+id/detayFavIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="end"
+            android:src="@drawable/baseline_favorite_border_24" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView

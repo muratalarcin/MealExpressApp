@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentKayitOlBinding;
 import com.muratalarcin.mealexpress.ui.viewmodel.loginviewmodel.KayitOlViewModel;
@@ -23,7 +24,9 @@ public class KayitOlFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentKayitOlBinding.inflate(inflater, container, false);
 
+        //binding.toggleGroup.check(R.id.buttonUyeOl);
 
+        ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 
         return binding.getRoot();
     }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/anasayfaFragment">
+    app:startDestination="@id/girisYapFragment">
 
     <fragment
         android:id="@+id/anasayfaFragment"
@@ -37,4 +37,22 @@
         android:name="com.muratalarcin.mealexpress.ui.fragment.BottomSheetFragment"
         android:label="fragment_bottom_sheet"
         tools:layout="@layout/fragment_bottom_sheet" />
+    <fragment
+        android:id="@+id/girisYapFragment"
+        android:name="com.muratalarcin.mealexpress.ui.fragment.login.GirisYapFragment"
+        android:label="fragment_giris_yap"
+        tools:layout="@layout/fragment_giris_yap" >
+        <action
+            android:id="@+id/giristen_kayita"
+            app:destination="@id/kayitOlFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kayitOlFragment"
+        android:name="com.muratalarcin.mealexpress.ui.fragment.login.KayitOlFragment"
+        android:label="fragment_kayit_ol"
+        tools:layout="@layout/fragment_kayit_ol" >
+        <action
+            android:id="@+id/kayittanGirise"
+            app:destination="@id/girisYapFragment" />
+    </fragment>
 </navigation>
