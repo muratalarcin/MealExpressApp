@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.data.repo.YemeklerDaoRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,4 +32,16 @@ public class AnasayfaViewModel extends ViewModel {
     public void sepeteEkle(String yemek_adi, String yemek_resim_adi, int yemek_fiyat, int yemek_siparis_adet, String kullanici_adi) {
         yrepo.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
     }
+
+
+    public List<Yemekler> filtreleYemekler(List<Yemekler> yemeklerListesi, String s) {
+        List<Yemekler> filtrelenmisListe = new ArrayList<>();
+        for (Yemekler yemek : yemeklerListesi) {
+            if (yemek.getYemek_adi().toLowerCase().contains(s.toLowerCase())) {
+                filtrelenmisListe.add(yemek);
+            }
+        }
+        return filtrelenmisListe;
+    }
+
 }

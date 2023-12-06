@@ -84,4 +84,8 @@ public class YemeklerAdapter extends RecyclerView.Adapter<YemeklerAdapter.Anasay
     public int getItemCount() {
         return yemeklerListesi.size();
     }
+
+    public List<Yemekler> getYemekListesi() {
+        return yemeklerListesi;
+    }
 }

@@ -9,21 +9,29 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
+import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.databinding.FragmentAnasayfaBinding;
 import com.muratalarcin.mealexpress.ui.adapter.YemeklerAdapter;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.AnasayfaViewModel;
+
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -78,6 +86,25 @@ public class AnasayfaFragment extends Fragment {
                 if ((isSearchViewVisible && dy > 0) || (!isSearchViewVisible && dy < 0)) {
                     scrolledDistance += dy;
                 }
+            }
+        });
+
+
+
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            public boolean onQueryTextChange(String s) {
+                viewModel.yemeklerListesi.observe(getViewLifecycleOwner(), yemeklerListesi -> {
+                    // Kullanıcının girdisine göre filtreleme işlemi
+                    List<Yemekler> filtrelenmisListe = viewModel.filtreleYemekler(yemeklerListesi, s);
+                    YemeklerAdapter adapter = new YemeklerAdapter(filtrelenmisListe, requireContext(), viewModel);
+                    binding.rwAnasayfa.setAdapter(adapter);
+                });
+                return true;
             }
         });
 
