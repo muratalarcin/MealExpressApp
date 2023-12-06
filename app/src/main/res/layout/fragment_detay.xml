@@ -184,7 +184,7 @@
         app:layout_constraintTop_toTopOf="@+id/twToplam" />
 
     <EditText
-        android:id="@+id/twUrunNot"
+        android:id="@+id/editTextAdres"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginTop="32dp"

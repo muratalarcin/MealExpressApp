@@ -22,6 +22,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.SearchView;
 
 import com.muratalarcin.mealexpress.MainActivity;
@@ -73,11 +74,13 @@ public class AnasayfaFragment extends Fragment {
                 scrollRunnable = () -> {
                     if (isSearchViewVisible && scrolledDistance > SCROLL_THRESHOLD) {
                         binding.searchView.setVisibility(View.GONE);
+                        binding.sepetImageView.setVisibility(View.GONE);
                         isSearchViewVisible = false;
                         scrolledDistance = 0;
                     }
                     else if (!isSearchViewVisible && scrolledDistance < -SCROLL_THRESHOLD) {
                         binding.searchView.setVisibility(View.VISIBLE);
+                        binding.sepetImageView.setVisibility(View.VISIBLE);
                         isSearchViewVisible = true;
                         scrolledDistance = 0;
                     }
