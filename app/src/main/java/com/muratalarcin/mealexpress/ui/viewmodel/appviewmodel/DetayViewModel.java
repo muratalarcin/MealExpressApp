@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.muratalarcin.mealexpress.data.entity.Favoriler;
 import com.muratalarcin.mealexpress.data.entity.Yemekler;
 import com.muratalarcin.mealexpress.data.repo.YemeklerDaoRepository;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -16,6 +19,7 @@ public class DetayViewModel extends ViewModel {
     public YemeklerDaoRepository yrepo;
     private MutableLiveData<Integer> siparisAdet = new MutableLiveData<>();
     private MutableLiveData<Double> toplamFiyat = new MutableLiveData<>();
+    public MutableLiveData<List<Favoriler>> favoriListesi;
     private Yemekler gelenYemek;
 
     @Inject
