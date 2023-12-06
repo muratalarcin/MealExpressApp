@@ -34,9 +34,6 @@
         <action
             android:id="@+id/bottomSheet_gecis"
             app:destination="@id/bottomSheetFragment" />
-        <action
-            android:id="@+id/sepettenAnasayfaya"
-            app:destination="@id/anasayfaFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
@@ -65,8 +62,13 @@
             app:destination="@id/girisYapFragment" />
     </fragment>
     <fragment
+        android:id="@+id/favoriFragment"
+        android:name="com.muratalarcin.mealexpress.ui.fragment.app.FavoriFragment"
+        android:label="fragment_favori"
+        tools:layout="@layout/fragment_favori" />
+    <fragment
         android:id="@+id/profilFragment"
-        android:name="com.muratalarcin.mealexpress.ui.ProfilFragment"
+        android:name="com.muratalarcin.mealexpress.ui.fragment.app.ProfilFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profil" />
 </navigation>
