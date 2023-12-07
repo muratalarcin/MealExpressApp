@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/girisYapFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/anasayfaFragment"
@@ -71,4 +71,13 @@
         android:name="com.muratalarcin.mealexpress.ui.fragment.app.ProfilFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profil" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.muratalarcin.mealexpress.ui.fragment.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/acilis"
+            app:destination="@id/girisYapFragment" />
+    </fragment>
 </navigation>
