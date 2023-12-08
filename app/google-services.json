@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "427838276456",
+    "project_id": "mealexpress-a4615",
+    "storage_bucket": "mealexpress-a4615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427838276456:android:f760cf61e8b18a363e8cdd",
+        "android_client_info": {
+          "package_name": "com.muratalarcin.mealexpress"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCugba49_QwiZ-jRHLRly5JUByWBOTgm18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
