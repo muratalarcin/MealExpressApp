@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ public class GirisYapFragment extends Fragment {
     private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private boolean showOneTapUI = true;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,9 +54,26 @@ public class GirisYapFragment extends Fragment {
 
         ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 
+        binding.twSifremiUnuttum.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.giristenSifreye);
+        });
+
 
         binding.buttonKayitOl.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.giristen_kayita);
+        });
+
+        binding.imageViewGoz.setOnClickListener(view -> {
+            int inputType = binding.textInputLayoutSifre.getEditText().getInputType();
+            int newInputType = (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) ?
+                    InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD :
+                    InputType.TYPE_TEXT_VARIATION_PASSWORD;
+
+            binding.textInputLayoutSifre.getEditText().setInputType(newInputType);
+
+            // Parolanın sonuna git
+            binding.textInputLayoutSifre.getEditText().setSelection(binding.textInputLayoutSifre.getEditText().length());
+
         });
 
         binding.buttonUygulamayaGirisYap.setOnClickListener(view -> {

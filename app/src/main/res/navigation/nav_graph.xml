@@ -51,6 +51,9 @@
         <action
             android:id="@+id/giristenAnasayfaya"
             app:destination="@id/anasayfaFragment" />
+        <action
+            android:id="@+id/giristenSifreye"
+            app:destination="@id/sifreUnuttumFragment" />
     </fragment>
     <fragment
         android:id="@+id/kayitOlFragment"
@@ -81,6 +84,18 @@
         tools:layout="@layout/fragment_splash_screen" >
         <action
             android:id="@+id/acilis"
+            app:destination="@id/girisYapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sifreUnuttumFragment"
+        android:name="com.muratalarcin.mealexpress.ui.fragment.login.SifreUnuttumFragment"
+        android:label="fragment_sifre_unuttum"
+        tools:layout="@layout/fragment_sifre_unuttum" >
+        <action
+            android:id="@+id/sifredenKayita"
+            app:destination="@id/kayitOlFragment" />
+        <action
+            android:id="@+id/sifredenGirise"
             app:destination="@id/girisYapFragment" />
     </fragment>
 </navigation>

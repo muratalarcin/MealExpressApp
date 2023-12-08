@@ -6,10 +6,12 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +43,14 @@ public class KayitOlFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
 
         mAuth = FirebaseAuth.getInstance();
+
+        binding.imageViewGozKayit1.setOnClickListener(view -> {
+            togglePasswordVisibility(Objects.requireNonNull(binding.textInputLayoutSifre.getEditText()));
+        });
+
+        binding.imageViewGozKayit2.setOnClickListener(view -> {
+            togglePasswordVisibility(Objects.requireNonNull(binding.textInputLayoutSifreTekrarla.getEditText()));
+        });
 
         binding.buttonUygulamayaKayitOl.setOnClickListener(view -> {
             String adSoyad = Objects.requireNonNull(binding.textInputLayoutAd.getEditText()).getText().toString();
@@ -97,5 +107,16 @@ public class KayitOlFragment extends Fragment {
         } else {
             // Kullanıcı kayıt olmadıysa yapılacak işlemler
         }
+    }
+    private void togglePasswordVisibility(EditText editText) {
+        int inputType = editText.getInputType();
+        int newInputType = (inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) ?
+                InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD :
+                InputType.TYPE_TEXT_VARIATION_PASSWORD;
+
+        editText.setInputType(newInputType);
+
+        // Parolanın sonuna git
+        editText.setSelection(editText.length());
     }
 }
