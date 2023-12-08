@@ -1,6 +1,5 @@
 package com.muratalarcin.mealexpress.ui.fragment.login;
 
-import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 
@@ -18,7 +17,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +36,9 @@ public class GirisYapFragment extends Fragment {
     private GirisYapViewModel viewModel;
     private FirebaseAuth mAuth;
     private static final String TAG = "GirisYapFragment";
+    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+    private boolean showOneTapUI = true;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,22 +52,19 @@ public class GirisYapFragment extends Fragment {
 
         ((MainActivity) requireActivity()).setBottomNavigationVisibility(false);
 
+
         binding.buttonKayitOl.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.giristen_kayita);
         });
 
         binding.buttonUygulamayaGirisYap.setOnClickListener(view -> {
-            String girilenSifre = binding.textInputLayoutSifre.getEditText().getText().toString();
+            String girilenEmail = Objects.requireNonNull(binding.textInputLayoutEmail.getEditText()).getText().toString();
+            String girilenSifre = Objects.requireNonNull(binding.textInputLayoutSifre.getEditText()).getText().toString();
 
             if (girilenSifre.equals("admin")) {
                 Navigation.findNavController(view).navigate(R.id.giristenAnasayfaya);
 
             }
-        });
-
-        binding.buttonUygulamayaGirisYap.setOnClickListener(view -> {
-            String girilenEmail = Objects.requireNonNull(binding.textInputLayoutEmail.getEditText()).getText().toString();
-            String girilenSifre = Objects.requireNonNull(binding.textInputLayoutSifre.getEditText()).getText().toString();
 
             // Firebase Authentication ile oturum açma
             mAuth.signInWithEmailAndPassword(girilenEmail, girilenSifre)
@@ -119,4 +117,5 @@ public class GirisYapFragment extends Fragment {
             // Kullanıcı oturum açmamışsa yapılacak işlemler
         }
     }
+
 }

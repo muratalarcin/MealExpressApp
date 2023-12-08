@@ -60,6 +60,9 @@
         <action
             android:id="@+id/kayittanGirise"
             app:destination="@id/girisYapFragment" />
+        <action
+            android:id="@+id/kayittanAnasayfaya"
+            app:destination="@id/anasayfaFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriFragment"

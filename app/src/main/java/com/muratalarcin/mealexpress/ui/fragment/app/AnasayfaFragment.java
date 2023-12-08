@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -44,6 +45,8 @@ public class AnasayfaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAnasayfaBinding.inflate(inflater, container, false);
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
 
         binding.sepetImageView.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.anasayfadanSepete);
@@ -120,6 +123,14 @@ public class AnasayfaFragment extends Fragment {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(AnasayfaViewModel.class);
     }
+    // Geri tuşu dinleyicisi
+    OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+        @Override
+        public void handleOnBackPressed() {
+            // Geri tuşu işlemi
+            // Bu bloğu boş bırakarak geri tuşunu devre dışı bırakabilirsiniz
+        }
+    };
 
     /*@Override
     public void onResume() {
