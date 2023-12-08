@@ -43,8 +43,8 @@
 
     <ImageView
         android:id="@+id/imageViewDetay"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="396dp"
+        android:layout_height="396dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -55,7 +55,7 @@
         android:id="@+id/twAd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Ayran"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -202,7 +202,7 @@
         android:id="@+id/imageView2"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="170dp"
+        android:layout_marginStart="350dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
