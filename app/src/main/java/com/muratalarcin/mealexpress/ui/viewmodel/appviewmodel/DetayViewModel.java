@@ -1,5 +1,7 @@
 package com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel;
 
+import android.content.SharedPreferences;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -19,6 +21,7 @@ public class DetayViewModel extends ViewModel {
     public YemeklerDaoRepository yrepo;
     private MutableLiveData<Integer> siparisAdet = new MutableLiveData<>();
     private MutableLiveData<Double> toplamFiyat = new MutableLiveData<>();
+    private MutableLiveData<String> adSoyadLiveData;
     public MutableLiveData<List<Favoriler>> favoriListesi;
     private Yemekler gelenYemek;
 
