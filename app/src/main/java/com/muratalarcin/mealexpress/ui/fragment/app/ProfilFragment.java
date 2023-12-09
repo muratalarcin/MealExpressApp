@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,6 +23,7 @@ import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentProfilBinding;
 import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.ProfilViewModel;
+import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.SepetViewModel;
 
 import java.util.Objects;
 
@@ -37,8 +39,7 @@ public class ProfilFragment extends Fragment {
         binding = FragmentProfilBinding.inflate(inflater, container, false);
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
-
-        viewModel = new ViewModelProvider(this).get(ProfilViewModel.class);
+        
         viewModel.getAdSoyad().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String adSoyad) {
@@ -87,4 +88,9 @@ public class ProfilFragment extends Fragment {
             // Bu bloğu boş bırakarak geri tuşunu devre dışı bırakabilirsiniz
         }
     };
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(ProfilViewModel.class);
+    }
 }
