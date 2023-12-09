@@ -1,5 +1,6 @@
 package com.muratalarcin.mealexpress.data.repo;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.muratalarcin.mealexpress.data.entity.CRUDCevap;
@@ -19,6 +20,17 @@ public class YemeklerDaoRepository {
     public MutableLiveData<List<Yemekler>> yemeklerListesi = new MutableLiveData<>();
     public MutableLiveData<List<SepetString>> sepetListesi = new MutableLiveData<List<SepetString>>();
     private YemeklerDao ydao;
+    private MutableLiveData<String> adSoyadLiveData = new MutableLiveData<>();
+
+    // Dışarıdan bu değeri observe etmek için bir LiveData
+    public LiveData<String> getAdSoyadLiveData() {
+        return adSoyadLiveData;
+    }
+
+    // ViewModel içindeki adSoyad'ı güncelleyen bir metod
+    public void setAdSoyad(String adSoyad) {
+        adSoyadLiveData.setValue(adSoyad);
+    }
 
     public YemeklerDaoRepository(YemeklerDao ydao) {
         this.ydao = ydao;

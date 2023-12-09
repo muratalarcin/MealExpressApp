@@ -1,4 +1,4 @@
-package com.muratalarcin.mealexpress.ui.viewmodel.loginviewmodel;
+package com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel;
 
 import android.content.SharedPreferences;
 
@@ -13,17 +13,23 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class KayitOlViewModel extends ViewModel {
-
-    private YemeklerDaoRepository yrepo;
+public class ProfilViewModel extends ViewModel {
     private MutableLiveData<String> adSoyadLiveData;
-    private SharedPreferences sharedPreferences; // SharedPreferences nesnesi
+    public YemeklerDaoRepository yrepo;
+    private SharedPreferences sharedPreferences;
 
     @Inject
-    public KayitOlViewModel(YemeklerDaoRepository yrepo, SharedPreferences sharedPreferences) {
+    public ProfilViewModel(YemeklerDaoRepository yrepo, SharedPreferences sharedPreferences) {
         this.yrepo = yrepo;
         this.adSoyadLiveData = new MutableLiveData<>();
         this.sharedPreferences = sharedPreferences;
+
+        // Uygulama başladığında SharedPreferences'ten ad soyadı yükleyin
+        String savedAdSoyad = sharedPreferences.getString("adSoyad", "");
+        adSoyadLiveData.setValue(savedAdSoyad);
+
+        // ProfilViewModel içindeki adSoyad'ı güncelleyen metodu çağırın
+        yrepo.setAdSoyad(savedAdSoyad);
     }
 
     public LiveData<String> getAdSoyad() {
@@ -32,14 +38,7 @@ public class KayitOlViewModel extends ViewModel {
 
     public void updateAdSoyad(String adSoyad) {
         adSoyadLiveData.setValue(adSoyad);
-
-        // SharedPreferences'e ad soyadı kaydet
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("adSoyad", adSoyad);
-        editor.apply();
-
-        // ProfilViewModel içindeki adSoyad'ı güncelleyen metodu çağırın
-        yrepo.setAdSoyad(adSoyad);
     }
 }
+
 

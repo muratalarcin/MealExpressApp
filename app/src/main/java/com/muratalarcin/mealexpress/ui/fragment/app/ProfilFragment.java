@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
@@ -16,15 +18,28 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.databinding.FragmentProfilBinding;
+import com.muratalarcin.mealexpress.ui.viewmodel.appviewmodel.ProfilViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ProfilFragment extends Fragment {
     private FragmentProfilBinding binding;
+    private ProfilViewModel viewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentProfilBinding.inflate(inflater, container, false);
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
+
+        viewModel = new ViewModelProvider(this).get(ProfilViewModel.class);
+        viewModel.getAdSoyad().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String adSoyad) {
+                binding.textViewAdSoyad.setText(adSoyad);
+            }
+        });
 
         binding.buttonCikisYap.setOnClickListener(view -> {
             FirebaseAuth.getInstance().signOut();

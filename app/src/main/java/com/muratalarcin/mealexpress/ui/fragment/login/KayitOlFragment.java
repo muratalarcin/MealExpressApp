@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.text.InputType;
@@ -58,11 +60,16 @@ public class KayitOlFragment extends Fragment {
             String sifre = Objects.requireNonNull(binding.textInputLayoutSifre.getEditText()).getText().toString();
             String sifreTekrar = Objects.requireNonNull(binding.textInputLayoutSifreTekrarla.getEditText()).getText().toString();
 
-            // Şifreleri kontrol et
-            if (!sifre.equals(sifreTekrar)) {
-                Toast.makeText(getContext(), "Şifreler uyuşmuyor.", Toast.LENGTH_SHORT).show();
-                return;
-            }
+
+            viewModel = new ViewModelProvider(this).get(KayitOlViewModel.class);
+            viewModel.updateAdSoyad(adSoyad);
+
+/*
+            if (viewModel != null) {
+                viewModel.updateAdSoyad(adSoyad);
+            } else {
+                Log.e(TAG, "viewModel is null");
+            }*/
 
             // Firebase Authentication ile kayıt olma
             mAuth.createUserWithEmailAndPassword(email, sifre)

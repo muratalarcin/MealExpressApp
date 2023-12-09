@@ -37,7 +37,6 @@ public class GirisYapFragment extends Fragment {
     private GirisYapViewModel viewModel;
     private FirebaseAuth mAuth;
     private static final String TAG = "GirisYapFragment";
-    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private boolean showOneTapUI = true;
 
 
