@@ -50,7 +50,7 @@ public class ProfilFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("My Pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         binding.buttonGuncelle.setOnClickListener(view -> {
-            String adres = binding.editTextAdres.getText().toString();
+            String adres = Objects.requireNonNull(binding.editTextAdres.getEditText()).getText().toString();
             String adresBaslik = Objects.requireNonNull(binding.textInputLayoutAdresBaslik.getEditText()).getText().toString();
             editor.putString("adres", adres);
             editor.putString("adresBaslik", adresBaslik);
@@ -61,8 +61,8 @@ public class ProfilFragment extends Fragment {
         String kaydedilenAdres = sharedPreferences.getString("adres", "");
         String kaydedilenAdresBaslik = sharedPreferences.getString("adresBaslik", "");
 
-        binding.editTextAdresBaslik.setText(kaydedilenAdresBaslik);
-        binding.editTextAdres.setText(kaydedilenAdres);
+        binding.baslik.setText(kaydedilenAdresBaslik);
+        binding.bilgi.setText(kaydedilenAdres);
 
 
         binding.buttonCikisYap.setOnClickListener(view -> {
