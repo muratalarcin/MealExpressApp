@@ -43,8 +43,8 @@
 
     <ImageView
         android:id="@+id/imageViewDetay"
-        android:layout_width="396dp"
-        android:layout_height="396dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="45"
-        android:textSize="24sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonSepeteEkle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -202,7 +202,7 @@
         android:id="@+id/imageView2"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="350dp"
+        android:layout_marginStart="300dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

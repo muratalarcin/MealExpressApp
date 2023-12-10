@@ -1,6 +1,9 @@
 package com.muratalarcin.mealexpress.ui.fragment.login;
 
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -94,6 +97,12 @@ public class GirisYapFragment extends Fragment {
                                 Log.d(TAG, "signInWithEmailAndPassword:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
+
+                                String kullanici = user.getDisplayName();
+                                SharedPreferences sharedPreferences = getContext().getSharedPreferences("kullanici", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("kullanici", kullanici);
+                                editor.apply();
                             } else {
                                 // Oturum açma başarısız ise
                                 Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
@@ -104,6 +113,8 @@ public class GirisYapFragment extends Fragment {
                         }
                     });
         });
+
+
 
 
 

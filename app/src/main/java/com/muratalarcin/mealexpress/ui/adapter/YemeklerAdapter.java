@@ -1,6 +1,9 @@
 package com.muratalarcin.mealexpress.ui.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,11 +64,14 @@ public class YemeklerAdapter extends RecyclerView.Adapter<YemeklerAdapter.Anasay
         t.textViewFiyat.setText(String.valueOf(yemek.getYemek_fiyat() + "₺"));
 
         t.buttonSepet.setOnClickListener(view -> {
+            SharedPreferences sharedPreferences = mContext.getSharedPreferences("kullanici", MODE_PRIVATE);
+            String kulanici = sharedPreferences.getString("kullanici", "");
+
                 String yemek_adi = yemek.getYemek_adi();
                 String yemek_resim_adi = resimAdi;
                 int yemek_fiyat = yemek.getYemek_fiyat();
                 int yemek_siparis_adet = 1;
-                String kullanici_adi = "murat";
+                String kullanici_adi = kulanici;
 
                 viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
 

@@ -1,5 +1,10 @@
 package com.muratalarcin.mealexpress.data.entity;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.io.Serializable;
 
 public class Sepet implements Serializable {

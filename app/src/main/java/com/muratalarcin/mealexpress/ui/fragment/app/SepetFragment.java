@@ -1,6 +1,9 @@
 package com.muratalarcin.mealexpress.ui.fragment.app;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -59,7 +62,10 @@ public class SepetFragment extends Fragment {
             binding.rvSepet.setAdapter(adapter);
         });
 
-        //viewModel.sepetiYukle("murat");
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("kullanici", MODE_PRIVATE);
+        String kulanici = sharedPreferences.getString("kullanici", "");
+
+        viewModel.sepetiYukle(kulanici);
 
 
 

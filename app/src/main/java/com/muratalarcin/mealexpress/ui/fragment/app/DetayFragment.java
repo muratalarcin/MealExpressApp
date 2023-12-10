@@ -1,6 +1,9 @@
 package com.muratalarcin.mealexpress.ui.fragment.app;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,6 +21,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.muratalarcin.mealexpress.MainActivity;
 import com.muratalarcin.mealexpress.R;
 import com.muratalarcin.mealexpress.data.entity.Sepet;
@@ -34,6 +39,7 @@ public class DetayFragment extends Fragment {
     private FragmentDetayBinding binding;
     private DetayViewModel viewModel;
     private Sepet Sepet;
+    private FirebaseAuth mAuth;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,11 +96,14 @@ public class DetayFragment extends Fragment {
                         .setActionTextColor(actionTextColor)
                         .show();
             } else {
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("kullanici", MODE_PRIVATE);
+                String kulanici = sharedPreferences.getString("kullanici", "");
+
                 String yemek_adi = binding.twAd.getText().toString();
                 String yemek_resim_adi = resimAdi;
                 int yemek_fiyat = Integer.parseInt(String.valueOf(binding.twFiyat.getText()));
                 int yemek_siparis_adet = Integer.parseInt(String.valueOf(binding.twAdet.getText()));
-                String kullanici_adi = "murat";
+                String kullanici_adi = kulanici;
 
                 viewModel.sepeteEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi);
 
