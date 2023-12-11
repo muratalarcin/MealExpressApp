@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "427838276456",
+    "project_id": "mealexpress-a4615",
+    "storage_bucket": "mealexpress-a4615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427838276456:android:f760cf61e8b18a363e8cdd",
+        "android_client_info": {
+          "package_name": "com.muratalarcin.mealexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427838276456-ac30a8nq19v2mb1i38h0vsgf3r0s5n46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.muratalarcin.mealexpress",
+            "certificate_hash": "65db2424b554b65126d65b5f3b16b991728ae2fd"
+          }
+        },
+        {
+          "client_id": "427838276456-cjakm8tlgrs2uj2vhlkubkgpbc7b6u3j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCugba49_QwiZ-jRHLRly5JUByWBOTgm18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427838276456-cjakm8tlgrs2uj2vhlkubkgpbc7b6u3j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
