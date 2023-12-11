@@ -11,11 +11,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imageViewPP"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/sepet_icon"
+            android:src="@drawable/pp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textViewAdSoyad"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPP" />
 
         <TextView
             android:id="@+id/textViewAdSoyad"
@@ -111,5 +111,17 @@
 
                 android:hint="Adresi Bilgisi" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageViewAddPhoto"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="140dp"
+            android:src="@drawable/baseline_add_photo_alternate_24"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewPP"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPP"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPP"
+            app:layout_constraintTop_toTopOf="@+id/imageViewPP" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

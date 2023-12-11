@@ -46,6 +46,7 @@
                     android:id="@+id/favButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginStart="154dp"
                     android:layout_marginTop="16dp"
                     android:src="@drawable/baseline_favorite_border_24" />
