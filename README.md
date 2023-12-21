@@ -19,5 +19,5 @@
  <img src="https://github.com/muratalarcin/Fotolar/blob/main/Screenshot_1702836066.png" width="198" height="auto" style="margin: 10px;">
  <img src="https://github.com/muratalarcin/Fotolar/blob/main/Screenshot_1702836147.png" width="198" height="auto" style="margin: 10px;">
 
- 
+  
 </div>
